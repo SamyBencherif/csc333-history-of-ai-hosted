@@ -49,13 +49,41 @@ engine.importSpritesheet = function (dbKey, fwidth, fheight, count)
 end
 
 engine.animRenderer = function (obj, options)
-    local name = options.name;
+    local sprite = options.sprite;
     local framerate = options.framerate;
     return function()
-        love.graphics.draw(engine.resources[name].spritesheet, 
-            engine.resources[name].frames[math.floor(framerate*engine.time) % 
-            #engine.resources[name].frames + 1], obj.x, obj.y, 0, 2, 2
+        love.graphics.setColor(1,1,1)
+        love.graphics.draw(engine.resources[sprite].spritesheet, 
+            engine.resources[sprite].frames[math.floor(framerate*engine.time) % 
+            #engine.resources[sprite].frames + 1], obj.x, obj.y, 0, 2, 2
         );
+    end
+end
+
+engine.textRenderer = function (obj, options)
+    local sprite = options.sprite;
+    local framerate = options.framerate;
+    return function()
+        love.graphics.setColor(1,1,1)
+        love.graphics.draw(engine.resources[sprite].spritesheet, 
+            engine.resources[sprite].frames[math.floor(framerate*engine.time) % 
+            #engine.resources[sprite].frames + 1], obj.x, obj.y, 0, 2, 2
+        );
+
+        -- Setting the font so that it is used when drawning the string.
+        love.graphics.setFont(options.font)
+
+        -- Present one additional string character each frame
+        obj.charsVisible = obj.charsVisible + options.textRate
+
+        -- Text color is black
+        love.graphics.setColor(0,0,0)
+
+        -- Renders the correct substring of text
+        love.graphics.print(
+            string.sub(obj.text, 0, obj.charsVisible), 
+            obj.x+20, obj.y+20
+        )
     end
 end
 
