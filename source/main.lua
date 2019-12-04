@@ -1,5 +1,5 @@
 --      author: Samy Bencherif
--- description: It's a science fiction type game (?)
+-- description: It's a deep exploration of history of AI and a fantastical one at that
 --              This file contains game logic
 
 local engine = require("engine");
@@ -68,9 +68,11 @@ function love.keypressed( key, scancode, isrepeat )
 end
 
 function love.mousepressed(x, y, button, istouch)
-    narrativeIndex = narrativeIndex + 1
-    dialogBox.text = narrative[narrativeIndex]
-    dialogBox.charsVisible = 0
+    if narrativeIndex < #narrative then
+        narrativeIndex = narrativeIndex + 1
+        dialogBox.text = narrative[narrativeIndex]
+        dialogBox.charsVisible = 0
+    end
  end
 
 love.update = engine.update
