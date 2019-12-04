@@ -1,103 +1,45 @@
 --      author: Samy Bencherif
 -- description: It's a science fiction type game (?)
+--              This file contains game logic
 
--- Initialized here to preserve resources over reloads
-local resources = {};
+local engine = require("engine");
 
-local gameobjects;
-
-function addGameObject(obj)
-    table.insert(gameobjects, obj);
-end
-
-function importResourceAnim(dbKey, fwidth, fheight)
-    local texPath = "spritesheets/"..dbKey..".png";
-    local localResource = {};
-    localResource.type = "animation";
-    localResource.spritesheet = love.graphics.newImage(texPath);
-    localResource.frames = {};
-   
-    local w = fwidth;
-    local h = fheight;
-    local W = localResource.spritesheet:getWidth();
-    local H = localResource.spritesheet:getHeight();
- 
-    for y=0,math.floor(H/h)-1 do
-        for x=0,math.floor(W/w)-1 do
-            table.insert(localResource.frames, 
-                love.graphics.newQuad(w*x, h*y, w, h, W, H)
-            );
-        end
-    end
-
-    resources[dbKey] = localResource;
-end
-
-function animRenderer(obj, options)
-    local name = options.name;
-    local framerate = options.framerate;
-    return function()
-        love.graphics.draw(resources[name].spritesheet, 
-            resources[name].frames[math.floor(framerate*time) % 
-            #resources[name].frames + 1], obj.x, obj.y
-        );
-    end
-end
-
-function setRenderer(obj, renderer, opt)
-    obj.draw = renderer(obj, opt);
-    return obj; -- for chaining
-end
-
-function Coin(x, y)
-    local coin = {};
-    coin.x = x;
-    coin.y = y;
-
-    coin.draw = animRenderer(coin, "coin", 12);
-
-    coin.update = function()
-    end
-
-    return coin;
-end
+local mortimer
 
 function love.load()
 
     -- Purple background
     love.graphics.setBackgroundColor(0.4196, 0.2078, 0.6314);
 
-    time = 0;
-    gameobjects = {};
+    engine.reset()
  
-    importResourceAnim("coin", 32, 32);
+    engine.importSpritesheet("coin-gold", 32, 32);
+    engine.importSpritesheet("minsky.obitx299", 84, 101);
+    engine.importSpritesheet("book", 64, 64);
+    engine.importSpritesheet("book-grounded", 64, 64);
+    engine.importSpritesheet("shelf", 120, 150);
 
-    addGameObject(setRenderer({x=140; y=150}, animRenderer, {name="coin"; framerate=12}));
+    -- Create an object that looks like a coin at location < 140, 150 >
+    engine.addGameObject(engine.setRenderer({x=340; y=150}, engine.animRenderer, {name="minsky.obitx299"; framerate=5}));
+    engine.addGameObject(engine.setRenderer({x=80; y=180}, engine.animRenderer, {name="shelf"; framerate=0}));
+
+    local book = engine.setRenderer({x=140; y=355}, engine.animRenderer, {name="book"; framerate=12});
     
-    importResourceAnim("Mortimer-IDLE-BIG", 128, 128);
-    importResourceAnim("Mortimer-WALK-BIG", 128, 128);
-
-    mortimer = {x=20; y=100};
-    mortimer.update = function (dt, time)
-    end
-    setRenderer(mortimer, animRenderer, {name="Mortimer-IDLE-BIG"; framerate=12});
-    addGameObject(mortimer);
-
-end
-
-function love.update(dt)
-    time = time + dt;
-    for i=1,#gameobjects do
-        if (gameobjects[i].update) then
-            gameobjects[i].update(dt, time)
+    book.update = function()
+        if math.floor(12*engine.time) % 
+        #engine.resources["book"].frames + 1 == 9 then
+            engine.setRenderer(book, engine.animRenderer, {name="book-grounded"; framerate=0});
         end
     end
+
+    engine.addGameObject(book);
 end
 
-function love.draw()
-    for i=1,#gameobjects do
-        if (gameobjects[i].draw) then
-            gameobjects[i].draw()
-        end
+function love.keypressed( key, scancode, isrepeat )
+    if scancode == "right" then
+        -- mortimer.x = mortimer.x + 10;
     end
 end
+
+love.update = engine.update
+love.draw = engine.draw
