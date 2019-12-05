@@ -1,7 +1,7 @@
 McCarthy:WHO ARE YOU? AND WHY ARE YOU IN MY HOUSE?
 McCarthy:Of course, another ruffian has decided to steal my things and disgrace my legacy. 
 McCarthy:Do you know who I am?
-McCarthy:I am the founder of AI itself! 
+McCarthy:John McCarthy. I am the founder of AI itself! 
 McCarthy:My original body is dead, but my mind lives on, new and improved, in computerized form! 
 McCarthy:My mind's circuitry is confined to this dingy old house, with no wifi,
 McCarthy:so I can protect the legacy of historical A.I. and educate people of my work.

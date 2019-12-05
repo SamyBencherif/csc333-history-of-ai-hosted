@@ -396,7 +396,7 @@ engine.dialogBox = function (obj)
         end
     end
 
-    if namedText == "So what do you say, hooligan, \ncare to hear my story? " and not engine.makeThatOneDecision then
+    if (namedText == "So what do you say, hooligan, \ncare to hear my story? " and not engine.makeThatOneDecision) then
         engine.makeThatOneDecision = true
         local btnYes = engine.addGameObject({text="Yes"; x=100; y=100; w=100; h=20; font=assets.joystixPixelFont} , engine.button)
         local btnNo = engine.addGameObject({text="No"; x=200; y=100;  w=100; h=20; font=assets.joystixPixelFont}, engine.button)
@@ -436,6 +436,30 @@ engine.dialogBox = function (obj)
             end
         end
     end
+
+    if (string.sub(namedText, 0, 27) == " And don't think of escapin" and not engine.makeThatOneDecision) then
+        engine.makeThatOneDecision = true
+        local btnYes = engine.addGameObject({text="Escape"; x=100; y=100; w=100; h=20; font=assets.joystixPixelFont} , engine.button)
+        btnYes.mousemoved = function(x, y, button, istouch)
+            if btnYes.x < x and x < btnYes.x + btnYes.w and
+                btnYes.y < y and y < btnYes.y + btnYes.h then
+                    btnYes.color = {1,0,0,1};
+                else
+                    btnYes.color = {1,1,1,1};
+            end
+        end
+
+        btnYes.mousepressed = function(x, y, button, istouch)
+            if btnYes.x < x and x < btnYes.x + btnYes.w and
+                btnYes.y < y and y < btnYes.y + btnYes.h then
+                    -- player pressed yes
+                    engine.loadScene(require("scenes/credits"), true)
+
+            end
+        end
+    end
+
+
 
     -- Renders the correct substring of text
     -- The offset is hardcoded

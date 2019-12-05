@@ -16,7 +16,6 @@ function love.load()
 
     -- bring scene from filesystem to memory
     local intro = require("scenes/intro")
-    local welcomeRoom = require("scenes/welcomeRoom")
 
     love.graphics.setBackgroundColor(0,0,0);
 

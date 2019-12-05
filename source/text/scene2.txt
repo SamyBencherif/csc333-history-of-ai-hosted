@@ -1,4 +1,4 @@
-McCarthy:Due to a series of new found discoveries, scientists began considering the plausibility of 
+McCarthy:Due to a series of newfound discoveries, scientists began considering the plausibility of 
 McCarthy:Artificial Intelligence. Alan Turing's machine proved to us that all known algorithms can be 
 McCarthy:processed mechanically and computed -- eventually. Walter Pitts and Warren McCulloch made 
 McCarthy:discoveries in neurology, and A.I. programs arose that could play chess and checkers.
@@ -11,8 +11,8 @@ McCarthy:we organized the Dartmouth Conference where I coined the term "Artifici
 McCarthy:So a new field was born. 
 McCarthy: I admit I didn't do it alone.
 McCarthy:Researchers used many different approaches to build the field of A.I.
-McCarthy:Allow me to introduce to you Alan Newell.
-McCarthy: Alan, teach this youngster.
+McCarthy:Allow me to introduce to you Allen Newell.
+McCarthy: Allen, teach this youngster.
 Newell:We wanted to develop a program that mimics how a human thinks. If we did this, then we may be able
 Newell:to solve large scale problems even us humans couldn't solve. We came up with two strategies to 
 Newell:create an AI: emulation of the high level thought processes of a human brain 

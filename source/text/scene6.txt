@@ -18,7 +18,7 @@ Minsky:After 1969, all funding for the research left and no one would use percep
 Minsky:At this point symbolic logic was also showing little signs of success and many problems resulted 
 Minsky:in combinatorial explosions. The lack of development in AI and most solutions making little progress
 Minsky:lead to a lack of funding in the field. At the start of the 1970s we had the first AI winter.
-*Scene becomes snowy*
+*Snow falls outside*
 *Minsky looks out the window*
 Minsky: As a result, program development became increasingly unfeasible. 
 Minsky:Researchers were further handicapped by physical computational limits. 
@@ -35,4 +35,4 @@ Minsky: Wait why were you here again?
 Minsky: I'm pretty sure McCarthy mentioned something about being trapped.
 Minsky: Ah he must have meant that we were supposed to trap you here so that you can learn about early AI and how important we are.
 Minsky:I feel like we should start back over from the beginning.
-Minsky: And don't think of jumping out that window, that would be against the rules!
+Minsky: And don't think of escaping out that window, that would be against the rules!
