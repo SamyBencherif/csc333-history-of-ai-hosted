@@ -16,9 +16,10 @@ function love.load()
 
     -- bring intro scene from filesystem to memory
     local intro = require("scenes/intro")
+    local welcomeRoom = require("scenes/welcomeRoom")
 
     -- set it as the active scene
-    engine.loadScene(intro)
+    engine.loadScene(welcomeRoom)
 end
 
 -- delegate love2d's mainloops to the engine

@@ -14,8 +14,26 @@ engine.reset = function ()
 end
 
 -- Adds a gameObject to the world
-engine.addGameObject = function (obj)
+engine.addGameObject = function (obj, renderer, behavior)
+
+    -- Apply renderer if specified
+    -- Remember in Love, all drawing must occur in the draw loop
+    if renderer ~= nil then
+        obj.draw = function()
+            renderer(obj);
+        end
+    end
+
+    -- Apply behavior if specified
+    if behavior ~= nil then
+        obj.update = function()
+            behavior(obj);
+        end
+    end
+
     table.insert(engine.gameobjects, obj);
+
+    return obj; -- for chaining
 end
 
 -- Imports a scene to the world
@@ -123,68 +141,63 @@ engine.timedAudioRenderer = function (obj, options)
 end
 
 -- renders an animated sprite
-engine.animRenderer = function (obj, options)
+engine.animatedSprite = function (obj)
 
-    local sprite = options.sprite;
-    local framerate = options.framerate;
+    local sprite = obj.sprite;
+    local framerate = obj.framerate;
 
-    return function()
+    -- disable any tinting (tint white)
+    love.graphics.setColor(1,1,1)
 
-        -- disable any tinting (tint white)
-        love.graphics.setColor(1,1,1)
-
-        -- We select the spritesheet as the image to draw and the sprite quad as the drawing region.
-        -- The sprite quad is collected by indexing the array with an expression of time.
-        love.graphics.draw(engine.resources[sprite].spritesheet, 
-            engine.resources[sprite].frames[math.floor(framerate*engine.time) % 
-            #engine.resources[sprite].frames + 1], obj.x, obj.y, 0, 2, 2
-        );
-    end
-
+    -- We select the spritesheet as the image to draw and the sprite quad as the drawing region.
+    -- The sprite quad is collected by indexing the array with an expression of time.
+    love.graphics.draw(engine.resources[sprite].spritesheet, 
+        engine.resources[sprite].frames[math.floor(framerate*engine.time) % 
+        #engine.resources[sprite].frames + 1], obj.x, obj.y, 0, 2, 2
+    );
 end
 
--- renders a sprite with animated text
-engine.textRenderer = function (obj, options)
-    local sprite = options.sprite;
-    local framerate = options.framerate;
-    return function()
-        love.graphics.setColor(1,1,1)
+-- sprite with animated text
+engine.animatedText = function (obj)
 
-        love.graphics.draw(engine.resources[sprite].spritesheet, 
-            engine.resources[sprite].frames[math.floor(framerate*engine.time) % 
-            #engine.resources[sprite].frames + 1], obj.x, obj.y, 0, 2, 2
-        );
+    local sprite = obj.sprite
+    local framerate = obj.framerate
 
-        -- Setting the font so that it is used when drawning the string.
-        love.graphics.setFont(options.font)
+    love.graphics.setColor(1,1,1)
 
-        -- Present one additional string character each frame
-        obj.charsVisible = obj.charsVisible + options.textRate
+    love.graphics.draw(engine.resources[sprite].spritesheet, 
+        engine.resources[sprite].frames[math.floor(framerate*engine.time) % 
+        #engine.resources[sprite].frames + 1], obj.x, obj.y, 0, 2, 2
+    );
 
-        -- Text color is black
-        love.graphics.setColor(0,0,0)
+    -- Setting the font so that it is used when drawning the string.
+    love.graphics.setFont(obj.font)
 
-        -- Renders the correct substring of text
-        -- The offset is hardcoded
-        love.graphics.print(
-            string.sub(obj.text, 0, obj.charsVisible), 
-            obj.x+20, obj.y+20
-        )
-    end
-end
+    -- Present one additional string character each frame
+    obj.charsVisible = obj.charsVisible + obj.textRate
 
--- Shorthand to apply renders to objects
-engine.setRenderer = function (obj, renderer, opt)
-    obj.draw = renderer(obj, opt);
-    return obj; -- for chaining
+    -- Text color is black
+    love.graphics.setColor(0,0,0)
+
+    -- Renders the correct substring of text
+    -- The offset is hardcoded
+    love.graphics.print(
+        string.sub(obj.text, 0, obj.charsVisible), 
+        obj.x+20, obj.y+20
+    )
 end
 
 -- Keep track of time and run any gameObject-specific update routines
 engine.update = function (dt)
     engine.time = engine.time + dt;
+    engine.deltaTime = dt;
     for i=1,#engine.gameobjects do
         if (engine.gameobjects[i].update) then
-            engine.gameobjects[i].update(dt, time)
+
+            -- calls the gameObject's update function
+            -- current time is available as `engine.time`
+            -- delta time is available as `engine.deltaTime`
+            engine.gameobjects[i].update()
         end
     end
 end

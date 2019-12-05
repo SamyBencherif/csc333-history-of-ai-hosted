@@ -26,47 +26,40 @@ return {
         love.graphics.setBackgroundColor(0.4196, 0.2078, 0.6314);
     
         -- Minsky
-        engine.addGameObject(engine.setRenderer({x=340; y=40}, engine.animRenderer, {sprite="minsky.obitx299"; framerate=5}));
-        --engine.addGameObject(engine.animatedSprite({x=340; y=40; sprite="minsky.obitx299"; framerate=5}))
-
+        engine.addGameObject({x=340; y=40; sprite="minsky"; framerate=5}, engine.animatedSprite)
 
         -- Bookshelf
-        engine.addGameObject(engine.setRenderer({x=80; y=71}, engine.animRenderer, {sprite="shelf"; framerate=0}));
+        engine.addGameObject({x=80; y=71; sprite="shelf"; framerate=0}, engine.animatedSprite);
 
         -- Falling Book
-        local book = engine.setRenderer({x=140; y=245}, engine.animRenderer, {sprite="book"; framerate=12});
-        book.update = function()
+        local book = {x=140; y=245; sprite="book"; framerate=12};
+        engine.addGameObject(book, engine.animatedSprite, function()
             if math.floor(12*engine.time) % 
             #engine.resources["book"].frames + 1 == 9 then
-                engine.setRenderer(book, engine.animRenderer, {sprite="book-grounded"; framerate=0});
+                book.sprite = "book-grounded";
+                book.framerate = 0;
             end
-        end
-        engine.addGameObject(book);
+        end)
 
         -- Dialog Box
-        dialogBox = engine.setRenderer(
+        dialogBox = engine.addGameObject(
             {
                 x=10; y=370; 
                 text=narrative[narrativeIndex];
-                charsVisible=0
-            }, 
-            engine.textRenderer, 
-            {
+                charsVisible=0;
                 sprite="paragraph-block"; 
                 framerate=0; 
                 font=assets.silkscreenPixelFont;
                 textRate=1/2;
-            }
+            }, engine.animatedText
         )
-
-        engine.addGameObject(dialogBox);
     end;
 
     mousepressed = function(x, y, button, istouch)
         if narrativeIndex < #narrative then
-            narrativeIndex = narrativeIndex + 1
-            dialogBox.text = narrative[narrativeIndex]
-            dialogBox.charsVisible = 0
+            narrativeIndex = narrativeIndex + 1;
+            dialogBox.text = narrative[narrativeIndex];
+            dialogBox.charsVisible = 0;
         end
     end
 
