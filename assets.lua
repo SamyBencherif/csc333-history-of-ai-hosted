@@ -16,6 +16,7 @@ function init()
     engine.importSpritesheet("book-grounded", 64, 64);
     engine.importSpritesheet("shelf", 120, 150);
     engine.importSpritesheet("paragraph-block", 310, 50);
+    engine.importSpritesheet("dartmouth-conference", 320, 240);
 
     engine.importAudio("footsteps-gravel")
     engine.importAudio("window-break")
