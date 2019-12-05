@@ -8,7 +8,7 @@ function love.conf(t)
     t.window.height = 480;
 
     -- Game title
-    t.window.title = "New Game";
+    t.window.title = "Superbulous Adventures in Historical AI";
 
     -- Allows printing to console (https://love2d.org/forums/viewtopic.php?t=79579)
     t.console = true;
