@@ -3,9 +3,6 @@
 
 local engine = {};
 
--- Initialized here to preserve resources over reloads
-engine.resources = {};
-
 engine.reset = function ()
     engine.time = 0;
     engine.gameobjects = {};
@@ -13,6 +10,20 @@ end
 
 engine.addGameObject = function (obj)
     table.insert(engine.gameobjects, obj);
+end
+
+engine.loadScene = function(scene)
+
+    -- clear gameobjects from previous scene
+    engine.reset()
+
+    -- generate and add new gameobjects
+    scene.load()
+
+    -- register interaction events
+    love.mousepressed = scene.mousepressed
+    love.mousemoved = scene.mousemoved
+    love.mousereleased = scene.mousereleased
 end
 
 engine.importSpritesheet = function (dbKey, fwidth, fheight, count)
