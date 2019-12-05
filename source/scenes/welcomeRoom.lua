@@ -10,7 +10,8 @@ local assets = require("assets");
 
 local narrative = {
     "WHO ARE YOU? AND WHY ARE YOU IN MY HOUSE?",
-    "Of course, another ruffian who has decided to steal my things and disgrace my legacy. Do you even know who I am? I am the founder of AI itself!",
+    "IIIIIIIIIIIIIII\niiiiiiiiiiiiii\nXXXXXXXXXXXXXX",
+    "Of course, another ruffian who has decided to\nsteal my things and disgrace my legacy. Do you even know who I am? I am the founder of AI itself!",
     "While my original body is now dead, my mind lives on, new and improved, as a brain emulation. The founder of Artificial Intelligence, in a computer program! I live on in this old house to protect its legacy and educate the people of my work."
 };
 
