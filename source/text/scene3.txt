@@ -1,0 +1,10 @@
+Newell:The machine was built with the premise that if we could manipulate symbols using pattern matching techniques,
+Newell:then we could simulate decisions. Working closely with Herbert A. Simon and Cliff Shaw, 
+Newell:we set out to make the first intelligent program.
+Newell:We wanted to have the Logic Theorist capable of solving mathematical theorems, especially those in the book
+Newell:Principia Mathematica. The program would take a mathematical statement as input, then attempt to prove 
+Newell:that statement using predefined axioms and allowed methods of substitution. 
+Newell:This program was able to prove a number of theorems, and in a handful of cases it found simpler proofs than those that already existed.
+Newell:Remember that this was in 1955, and coming by a computer with enough power to run a program 
+Newell:like this was quite difficult. The first demonstration of this program was done using small
+Newell:postcards and co-workers acting out operations on the computer.

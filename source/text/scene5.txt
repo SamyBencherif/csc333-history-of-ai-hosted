@@ -1,0 +1,9 @@
+Rosenblatt:The idea came from studies in neurology. A single Perceptron can be imagined as a node with 
+Rosenblatt:multiple inputs and a single output. The perceptron receives a signal from binary inputs 
+Rosenblatt:each with a weight and offset value. 
+Rosenblatt:Then, if the sum across all incoming inputs results in a value over a certain threshold, 
+Rosenblatt:the node will "fire" by outputting a 1 down its single output path.
+Rosenblatt:This closely mirrors the functioning of a neuron in a human brain, 
+Rosenblatt:and when placed in a network with many other Perceptrons, 
+Rosenblatt:this system can be considered another framework of computation.
+*faint rumbling*

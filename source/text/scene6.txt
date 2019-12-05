@@ -1,0 +1,38 @@
+*Sounds of a toy car grow louder*
+*A small toy car rolls into the room*
+????:Did I hear perceptron mentioned?
+*A hologram of Marvin Minsky appears, projected from the toy car*
+Rosenblatt:Of course you show up.
+Minsky:I am Marvin Minsky, another influential figure in the field of AI. Most notably on perceptrons! 
+Minsky:In fact, I built one of the first neural network machines named SNARC, or known as the
+Minsky:Stochastic Neural Analog Reinforcement Calculator!
+Rosenblatt: Influential in that you ruined my work for a whole decade…
+Minsky: I had my reasons, all detailed in my famous book Perceptrons!
+Minsky: We showed that perceptrons were indeed quite powerful tools but they had limitations. 
+Minsky:There are problems in connectedness and parity that would limit any single perceptron. 
+Minsky:Even the predicate of a simple XOR function cannot be implemented with a single neuron.
+Minsky:Therefore, larger networks would have similar limitations.
+Rosenblatt: Except that it was later proven that multi-layered networks can actually represent an XOR. 
+Minsky:The damage was already done and my book had a staggering effect on the use of perceptrons. 
+Minsky:After 1969, all funding for the research left and no one would use perceptrons for over a decade.
+Minsky:At this point symbolic logic was also showing little signs of success and many problems resulted 
+Minsky:in combinatorial explosions. The lack of development in AI and most solutions making little progress
+Minsky:lead to a lack of funding in the field. At the start of the 1970s we had the first AI winter.
+*Scene becomes snowy*
+*Minsky looks out the window*
+Minsky: As a result, program development became increasingly unfeasible. 
+Minsky:Researchers were further handicapped by physical computational limits. 
+Minsky:AI solutions were large and complicated programs, most of which were likely written with an unbridled 
+Minsky:sense of childlike optimism. Simply put, the mid-20th century was a time when everyone overestimated 
+Minsky:their machines and programming capabilities, and underestimated the mysteries of the human nervous system. 
+Minsky:The ability to exercise “Common Sense” is resoundingly elusive to attempts to be codified.
+Rosenblatt:I believe we were both quite optimistic.
+Rosenblatt:It seemed so close at the time, but it was simply too soon. 
+Rosenblatt:The proper use of perceptrons didn’t come till much later when we had better proofs and better machines.
+Rosenblatt:We also underestimated the amount of data we would need to possibly create an AI. 
+Minsky: And so that is the tale of early AI. 
+Minsky: Wait why were you here again?
+Minsky: I’m pretty sure McCarthy mentioned something about being trapped.
+Minsky: Ah he must have meant that we were supposed to trap you here so that you can learn about early AI and how important we are.
+Minsky:I feel like we should start back over from the beginning.
+Minsky: And don’t think of jumping out that window, that would be against the rules!
