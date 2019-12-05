@@ -33,6 +33,26 @@ engine.loadScene = function(scene)
     love.mousereleased = scene.mousereleased
 end
 
+-- Pulls an audio file from the sounds directory into memory
+-- @param dbkey: Name without extension of audio file, files should be MP3
+-- @param srcType: Optional source type, should be "stream" for larger files
+--                 (See https://love2d.org/wiki/SourceType)
+engine.importAudio = function (dbKey, srcType)
+
+    local localResource = {};
+
+    if srcType == nil then
+        srcType = "static"
+    end
+
+    localResource.type = "sound";
+    localResource.audioSource = love.audio.newSource( "sounds/"..dbKey..".mp3", srcType )
+
+    -- store this resource in an accessible location
+    engine.resources[dbKey] = localResource;
+
+end
+
 -- Pulls a spritesheet from the spritesheet directory into memory
 -- @param dbkey: Name without extension of the spritesheet, files should be PNG
 -- @param fwidth: The width of a single frame
@@ -89,6 +109,18 @@ end
 
 -- Renderers are functions that return functions, they serve the purpose of being
 -- easily exchangeable while maintaining the immutable properties of an object.
+
+-- applies sound directions
+engine.timedAudioRenderer = function (obj, options)
+
+    return function()
+        if engine.time >= options.timeStart and not obj.playing then
+            love.audio.play(engine.resources[options.audio].audioSource)
+            obj.playing = true;
+        end
+    end
+
+end
 
 -- renders an animated sprite
 engine.animRenderer = function (obj, options)

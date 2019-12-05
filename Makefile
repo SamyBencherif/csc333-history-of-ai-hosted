@@ -1,6 +1,6 @@
 # Please make necessary configurations, then fix .gitignore
 NAME=game#
-LOVE=/mnt/c/Program\ Files/LOVE/love#
+LOVE=~/Applications/love.app/Contents/MacOS/love#
 ZIP=zip#
 
 build:
