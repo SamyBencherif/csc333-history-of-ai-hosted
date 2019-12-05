@@ -180,65 +180,20 @@ return {
             }, nil, engine.timedAudioSource
         )
 
-        -- This is a 5 second audio clip
-        engine.addGameObject(
-            {
-                playing = false;
-                audio = "footsteps-indoors";
-                timeStart = 12 + 4;
-            }, nil, engine.timedAudioSource
-        )
-
-        -- This is a 8 second audio clip
-        engine.addGameObject(
-            {
-                playing = false;
-                audio = "light-on";
-                timeStart = 12 + 4 + 5;
-            }, nil, engine.timedAudioSource
-        )
-
-        -- This is a 4 second audio clip
-        engine.addGameObject(
-            {
-                playing = false;
-                audio = "machine-whirring";
-                timeStart = 12 + 4 + 5 + 8;
-            }, nil, engine.timedAudioSource
-        )
-
-        --  This is a 4 second audio clip
-         engine.addGameObject(
-            {
-                playing = false;
-                audio = "ai-bootup";
-                timeStart = 12 + 4 + 5 + 8 + 4;
-            }, nil, engine.timedAudioSource
-        )
-
         -- when glass breaks, present dark room
         engine.addGameObject(
             {
                 finished = false;
                 action = function()
                     local welcomeRoom = require("scenes/welcomeRoom");
-                    engine.loadScene(welcomeRoom);
+                    engine.loadScene(welcomeRoom, true);
                     engine.tint = {1,1,1,.1};
                 end;
                 activationTime = 12 + 4;
             }, nil, engine.deferredAgent
         )
 
-        -- when light switch goes on, turn on lights
-        engine.addGameObject(
-            {
-                finished = false;
-                action = function()
-                    engine.tint = {1,1,1,1};
-                end;
-                activationTime = 12 + 4 + 5 + .6;
-            }, nil, engine.deferredAgent
-        )
+        
 
     end
 }

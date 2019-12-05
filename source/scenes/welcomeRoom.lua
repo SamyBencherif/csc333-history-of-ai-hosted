@@ -9,12 +9,9 @@ local engine = require('engine');
 local assets = require("assets");
 
 local narrative = {
-    "This is the first line of text.",
-    "This is the second line of text.",
-    "This is the third line of text.",
-    "Go fuck yourself ;)",
-    "Eat ass",
-    "Fin.",
+    "WHO ARE YOU? AND WHY ARE YOU IN MY HOUSE?",
+    "Of course, another ruffian who has decided to steal my things and disgrace my legacy. Do you even know who I am? I am the founder of AI itself!",
+    "While my original body is now dead, my mind lives on, new and improved, as a brain emulation. The founder of Artificial Intelligence, in a computer program! I live on in this old house to protect its legacy and educate the people of my work."
 };
 
 local tv;
@@ -47,17 +44,17 @@ return {
         --     end
         -- end)
 
-        -- Dialog Box
-        -- 
+        -- VISUAL CHOREGRAPHY
 
-        -- when light switch goes on, keep mccarthy dark
+        -- scene start: room dark, mccarthy hidden
         engine.addGameObject(
             {
                 finished = false;
                 action = function()
+                    engine.tint = {1,1,1,.1}
                     mccarthy.color = {1,1,1,0}
                 end;
-                activationTime = 12 + 4;
+                activationTime = 0;
             }, nil, engine.deferredAgent
         )
 
@@ -69,7 +66,18 @@ return {
                     mccarthy.color = {1,1,1,1}
                     tv.color = {.1, .3, .8, 1};
                 end;
-                activationTime = 12 + 4 + 5 + 8 + 4;
+                activationTime = 5 + 8 + 4;
+            }, nil, engine.deferredAgent
+        )
+
+        -- when light switch goes on, turn on lights
+        engine.addGameObject(
+            {
+                finished = false;
+                action = function()
+                    engine.tint = {1,1,1,1};
+                end;
+                activationTime = 5 + .6;
             }, nil, engine.deferredAgent
         )
 
@@ -90,9 +98,48 @@ return {
                         }, engine.animatedText
                     )
                 end;
-                activationTime = 12 + 4 + 5 + 8 + 4;
+                activationTime = 5 + 8 + 4;
             }, nil, engine.deferredAgent
         )
+
+        -- SOUND CHOREGRAPHY
+
+        -- This is a 5 second audio clip
+        engine.addGameObject(
+            {
+                playing = false;
+                audio = "footsteps-indoors";
+                timeStart = 0;
+            }, nil, engine.timedAudioSource
+        )
+
+        -- This is a 8 second audio clip
+        engine.addGameObject(
+            {
+                playing = false;
+                audio = "light-on";
+                timeStart = 5;
+            }, nil, engine.timedAudioSource
+        )
+
+        -- This is a 4 second audio clip
+        engine.addGameObject(
+            {
+                playing = false;
+                audio = "machine-whirring";
+                timeStart = 5 + 8;
+            }, nil, engine.timedAudioSource
+        )
+
+        --  This is a 4 second audio clip
+         engine.addGameObject(
+            {
+                playing = false;
+                audio = "ai-bootup";
+                timeStart = 5 + 8 + 4;
+            }, nil, engine.timedAudioSource
+        )
+
     end;
 
     mousepressed = function(x, y, button, istouch)
