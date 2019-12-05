@@ -6,7 +6,7 @@ local assets = require("assets");
 
 return {
     load = function ()
-        engine.addGameObject({x=0; y=0; sprite="dartmouth-conference"; framerate=0}, engine.animatedSprite)
-        engine.quickDialog("source/text/scene2.txt", "scenes/rand")
+        --engine.addGameObject({x=0; y=0; sprite=""; framerate=0}, engine.animatedSprite)
+        engine.quickDialog("source/text/scene6.txt", "scenes/credits")
     end
 }

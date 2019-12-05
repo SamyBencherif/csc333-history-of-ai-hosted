@@ -28,11 +28,11 @@ Minsky:their machines and programming capabilities, and underestimated the myste
 Minsky:The ability to exercise “Common Sense” is resoundingly elusive to attempts to be codified.
 Rosenblatt:I believe we were both quite optimistic.
 Rosenblatt:It seemed so close at the time, but it was simply too soon. 
-Rosenblatt:The proper use of perceptrons didn’t come till much later when we had better proofs and better machines.
+Rosenblatt:The proper use of perceptrons didn't come till much later when we had better proofs and better machines.
 Rosenblatt:We also underestimated the amount of data we would need to possibly create an AI. 
 Minsky: And so that is the tale of early AI. 
 Minsky: Wait why were you here again?
-Minsky: I’m pretty sure McCarthy mentioned something about being trapped.
+Minsky: I'm pretty sure McCarthy mentioned something about being trapped.
 Minsky: Ah he must have meant that we were supposed to trap you here so that you can learn about early AI and how important we are.
 Minsky:I feel like we should start back over from the beginning.
-Minsky: And don’t think of jumping out that window, that would be against the rules!
+Minsky: And don't think of jumping out that window, that would be against the rules!
