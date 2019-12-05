@@ -18,9 +18,6 @@ return {
 
     load = function()
 
-        -- Skip all welcome room intro
-        engine.time = 5 + 8 + 4;
-
         engine.pipHidden = true
 
         -- Purple background

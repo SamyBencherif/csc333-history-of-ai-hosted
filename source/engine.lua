@@ -8,6 +8,7 @@ local gameio = require("gameio")
 local assets = require("assets")
 
 local engine = {};
+local db
 
 -- Safe way to clear a scene. All asset pools and scenes are preserved in memory.
 -- GameObjects are destroyed.
@@ -51,7 +52,7 @@ engine.addGameObject = function (obj, renderer, behavior)
 end
 
 engine.quickDialog = function(stageDirections, targetScene)
-    local db = engine.addGameObject(
+    db = engine.addGameObject(
         {
             narrative=gameio.readLines(stageDirections);
             narrativeIndex=1;
@@ -60,7 +61,10 @@ engine.quickDialog = function(stageDirections, targetScene)
             textRate=2.4;
         }, engine.dialogBox
     )
+
     db.mousepressed = function(x, y, button, istouch)
+        if engine.makeThatOneDecision then return end
+
         if db and db.narrativeIndex < #db.narrative then
             db.narrativeIndex = db.narrativeIndex + 1;
             db.charsVisible = 0;
@@ -392,12 +396,79 @@ engine.dialogBox = function (obj)
         end
     end
 
+    if namedText == "So what do you say, hooligan, \ncare to hear my story? " and not engine.makeThatOneDecision then
+        engine.makeThatOneDecision = true
+        local btnYes = engine.addGameObject({text="Yes"; x=100; y=100; w=100; h=20; font=assets.joystixPixelFont} , engine.button)
+        local btnNo = engine.addGameObject({text="No"; x=200; y=100;  w=100; h=20; font=assets.joystixPixelFont}, engine.button)
+        btnYes.mousemoved = function(x, y, button, istouch)
+            if btnYes.x < x and x < btnYes.x + btnYes.w and
+                btnYes.y < y and y < btnYes.y + btnYes.h then
+                    btnYes.color = {1,0,0,1};
+                else
+                    btnYes.color = {1,1,1,1};
+            end
+        end
+
+        btnNo.mousemoved = function(x, y, button, istouch)
+            if btnNo.x < x and x < btnNo.x + btnNo.w and
+                btnNo.y < y and y < btnNo.y + btnNo.h then
+                    btnNo.color = {1,0,0,1};
+                else
+                    btnNo.color = {1,1,1,1};
+            end
+        end
+
+        btnYes.mousepressed = function(x, y, button, istouch)
+            if btnYes.x < x and x < btnYes.x + btnYes.w and
+                btnYes.y < y and y < btnYes.y + btnYes.h then
+                    -- player pressed yes
+                    engine.makeThatOneDecision = false
+                    engine.removeGameObject(btnYes)
+                    engine.removeGameObject(btnNo)
+                    db.narrativeIndex = db.narrativeIndex + 1
+            end
+        end
+
+        btnNo.mousepressed = function(x, y, button, istouch)
+            if btnNo.x < x and x < btnNo.x + btnNo.w and
+                btnNo.y < y and y < btnNo.y + btnNo.h then
+                    engine.loadScene(require("scenes/death"), true)
+            end
+        end
+    end
+
     -- Renders the correct substring of text
     -- The offset is hardcoded
     love.graphics.print(
         string.sub(namedText, 0, obj.charsVisible), 
         30, 390
     )
+end
+
+engine.button = function(obj)
+
+
+    -- Setting the font so that it is used when drawning the string.
+    love.graphics.setFont(obj.font)
+
+    if obj.color == nil then
+        obj.color = {1,1,1,1}
+    end
+
+    -- Filter by object tint and world tint
+    love.graphics.setColor(
+        engine.tint[1]*obj.color[1], 
+        engine.tint[2]*obj.color[2], 
+        engine.tint[3]*obj.color[3], 
+        engine.tint[4]*obj.color[4]
+    )
+
+    -- Draw text
+    love.graphics.print(
+        obj.text, 
+        obj.x, obj.y
+    )
+
 end
 
 engine.textParser = function (str)
@@ -460,6 +531,17 @@ engine.mousepressed = function(x, y, button, istouch)
         end
     end
 end
+
+-- Propagate clicks to gameObjects
+engine.mousemoved = function(x, y, button, istouch)
+    for i=1,#engine.gameobjects do
+        if (engine.gameobjects[i] == nil) then return end
+        if (engine.gameobjects[i].mousemoved) then
+            engine.gameobjects[i].mousemoved(x, y, button, istouch)
+        end
+    end
+end
+
 
 -- Give a reference to this engine to the calling program
 return engine;

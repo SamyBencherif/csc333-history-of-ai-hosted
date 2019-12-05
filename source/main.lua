@@ -22,10 +22,11 @@ function love.load()
 
     -- set active scene
     -- use "welcomeRoom" to skip outdoor intro
-    engine.loadScene(welcomeRoom, true)
+    engine.loadScene(intro, true)
 end
 
 -- delegate love2d's mainloops to the engine
 love.update = engine.update
 love.draw = engine.draw
 love.mousepressed = engine.mousepressed
+love.mousemoved = engine.mousemoved

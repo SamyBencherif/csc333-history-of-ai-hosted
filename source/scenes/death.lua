@@ -1,12 +1,12 @@
 -- @author: Samy Bencherif
--- @description: CREDITS
+-- @description: DEATH
 
 local engine = require('engine');
 local assets = require("assets");
 
 return {
     load = function ()
-        engine.addGameObject({color={0.6, 0.078, 0.314, 1}}, engine.backdrop)
+        engine.addGameObject({color={1,0,0, 1}}, engine.backdrop)
 
         engine.addGameObject({}).mousepressed = function()
             engine.loadScene(require('scenes/intro'), true)   
@@ -14,8 +14,8 @@ return {
 
         local title = engine.addGameObject(
             {
-                text = "Thanks for Playing!";
-                color = {1,1,1,1};
+                text = "YOU HAVE SMIGHTED\nBY McCARTHY\n\nGAME OVER";
+                color = {1,.8,.8,1};
                 font = assets.silkscreenPixelFontLarge;
                 x = 100;
                 y = 200;
