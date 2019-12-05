@@ -26,6 +26,9 @@ function init()
 end
 
 return {
+    joystixPixelFont = love.graphics.newFont("fonts/joystix-mono.ttf", 20);
+    joystixPixelFontLarge = love.graphics.newFont("fonts/joystix-mono.ttf", 40);
+
     silkscreenPixelFont = love.graphics.newFont("fonts/slkscr.ttf", 20);
     silkscreenPixelFontLarge = love.graphics.newFont("fonts/slkscr.ttf", 40);
     init = init;

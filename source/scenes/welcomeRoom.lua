@@ -24,6 +24,10 @@ local dialogBox;
 return {
 
     load = function()
+
+        -- Skip all welcome room intro
+        engine.time = 5 + 8 + 4;
+
         -- Purple background
         engine.addGameObject({color={0.4196, 0.2078, 0.6314, 1}}, engine.backdrop)
 
@@ -94,7 +98,7 @@ return {
                             charsVisible=0;
                             sprite="paragraph-block"; 
                             framerate=0; 
-                            font=assets.silkscreenPixelFont;
+                            font=assets.joystixPixelFont;
                             textRate=1/2;
                         }, engine.animatedText
                     )

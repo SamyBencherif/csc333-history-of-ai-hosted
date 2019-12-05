@@ -14,13 +14,14 @@ assets.init();
 -- called at game start
 function love.load()
 
-    -- bring intro scene from filesystem to memory
+    -- bring scene from filesystem to memory
     local intro = require("scenes/intro")
     local welcomeRoom = require("scenes/welcomeRoom")
 
     love.graphics.setBackgroundColor(0,0,0);
 
-    -- set it as the active scene
+    -- set active scene
+    -- use "welcomeRoom" to skip outdoor intro
     engine.loadScene(welcomeRoom, true)
 end
 
