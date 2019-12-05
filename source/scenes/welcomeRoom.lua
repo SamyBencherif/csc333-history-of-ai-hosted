@@ -17,7 +17,7 @@ local narrative = {
     "Fin.",
 };
 
-local minsky;
+local mccarthy;
 local narrativeIndex = 1;
 local dialogBox;
 
@@ -28,9 +28,9 @@ return {
         -- Purple background
         engine.addGameObject({color={0.4196, 0.2078, 0.6314, 1}}, engine.backdrop)
 
-        -- Minsky
-        engine.addGameObject({x=340; y=40; w=168, h=202, color={0,0,0,1}}, engine.block)
-        minsky = engine.addGameObject({x=340; y=40; sprite="minsky"; framerate=0}, engine.animatedSprite)
+        -- mccarthy
+        engine.addGameObject({x=340; y=40; w=120, h=90, color={0,0,0,1}}, engine.block)
+        mccarthy = engine.addGameObject({x=340; y=40; sprite="mccarthy"; framerate=0}, engine.animatedSprite)
 
         -- Bookshelf
         engine.addGameObject({x=80; y=71; sprite="shelf"; framerate=0}, engine.animatedSprite);
@@ -46,35 +46,46 @@ return {
         -- end)
 
         -- Dialog Box
-        -- dialogBox = engine.addGameObject(
-        --     {
-        --         x=10; y=370; 
-        --         text=narrative[narrativeIndex];
-        --         charsVisible=0;
-        --         sprite="paragraph-block"; 
-        --         framerate=0; 
-        --         font=assets.silkscreenPixelFont;
-        --         textRate=1/2;
-        --     }, engine.animatedText
-        -- )
+        -- 
 
-        -- when light switch goes on, keep minsky dark
+        -- when light switch goes on, keep mccarthy dark
         engine.addGameObject(
             {
                 finished = false;
                 action = function()
-                    minsky.color = {1,1,1,0}
+                    mccarthy.color = {1,1,1,0}
                 end;
-                activationTime = 12 + 4 + 5 + .6;
+                activationTime = 12 + 4;
             }, nil, engine.deferredAgent
         )
 
-        -- when ai-bootup plays, light up minsky
+        -- when ai-bootup plays, light up mccarthy
         engine.addGameObject(
             {
                 finished = false;
                 action = function()
-                    minsky.color = {1,1,1,1}
+                    mccarthy.color = {1,1,1,1}
+                end;
+                activationTime = 12 + 4 + 5 + 8 + 4;
+            }, nil, engine.deferredAgent
+        )
+
+        -- when ai-bootup plays, show dialogBox
+        engine.addGameObject(
+            {
+                finished = false;
+                action = function()
+                    dialogBox = engine.addGameObject(
+                        {
+                            x=10; y=370; 
+                            text=narrative[narrativeIndex];
+                            charsVisible=0;
+                            sprite="paragraph-block"; 
+                            framerate=0; 
+                            font=assets.silkscreenPixelFont;
+                            textRate=1/2;
+                        }, engine.animatedText
+                    )
                 end;
                 activationTime = 12 + 4 + 5 + 8 + 4;
             }, nil, engine.deferredAgent
@@ -82,7 +93,7 @@ return {
     end;
 
     mousepressed = function(x, y, button, istouch)
-        if narrativeIndex < #narrative then
+        if narrativeIndex < #narrative and dialogBox then
             narrativeIndex = narrativeIndex + 1;
             dialogBox.text = narrative[narrativeIndex];
             dialogBox.charsVisible = 0;
