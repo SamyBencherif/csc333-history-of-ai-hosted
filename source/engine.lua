@@ -10,6 +10,7 @@ local engine = {};
 -- GameObjects are destroyed.
 engine.reset = function ()
     engine.time = 0;
+    engine.tint = {1,1,1,1};
     engine.gameobjects = {};
 end
 
@@ -37,10 +38,12 @@ engine.addGameObject = function (obj, renderer, behavior)
 end
 
 -- Imports a scene to the world
-engine.loadScene = function(scene)
+engine.loadScene = function(scene, performReset)
 
     -- clear gameobjects from previous scene
-    engine.reset()
+    if performReset then
+        engine.reset()
+    end
 
     -- generate and add new gameobjects
     scene.load()
@@ -140,8 +143,17 @@ engine.animatedSprite = function (obj)
     local sprite = obj.sprite;
     local framerate = obj.framerate;
 
+    if obj.color == nil then
+        obj.color = {1,1,1,1}
+    end
+
     -- disable any tinting (tint white)
-    love.graphics.setColor(1,1,1)
+    love.graphics.setColor(
+        engine.tint[1]*obj.color[1], 
+        engine.tint[2]*obj.color[2], 
+        engine.tint[3]*obj.color[3], 
+        engine.tint[4]*obj.color[4]
+    )
 
     -- We select the spritesheet as the image to draw and the sprite quad as the drawing region.
     -- The sprite quad is collected by indexing the array with an expression of time.
@@ -174,8 +186,17 @@ engine.staticText = function (obj)
     -- Setting the font so that it is used when drawning the string.
     love.graphics.setFont(obj.font)
 
-    -- Text color is black
-    love.graphics.setColor(obj.color[1], obj.color[2], obj.color[3])
+    if obj.color == nil then
+        obj.color = {1,1,1,1}
+    end
+
+    -- Filter by object tint and world tint
+    love.graphics.setColor(
+        engine.tint[1]*obj.color[1], 
+        engine.tint[2]*obj.color[2], 
+        engine.tint[3]*obj.color[3], 
+        engine.tint[4]*obj.color[4]
+    )
 
     -- Draw text
     love.graphics.print(
@@ -184,9 +205,33 @@ engine.staticText = function (obj)
     )
 end
 
+engine.block = function (obj)
+
+    if obj.color == nil then
+        obj.color = {1,1,1,1}
+    end
+
+    love.graphics.setColor(
+        engine.tint[1]*obj.color[1], 
+        engine.tint[2]*obj.color[2], 
+        engine.tint[3]*obj.color[3], 
+        engine.tint[4]*obj.color[4]
+    )
+    love.graphics.rectangle("fill", obj.x, obj.y, obj.w, obj.h )
+end
+
 engine.backdrop = function (obj)
 
-    love.graphics.setColor(obj.color[1], obj.color[2], obj.color[3])
+    if obj.color == nil then
+        obj.color = {1,1,1,1}
+    end
+
+    love.graphics.setColor(
+        engine.tint[1]*obj.color[1], 
+        engine.tint[2]*obj.color[2], 
+        engine.tint[3]*obj.color[3], 
+        engine.tint[4]*obj.color[4]
+    )
     love.graphics.rectangle("fill", 0, 0, 640, 480 )
 end
 
@@ -196,7 +241,16 @@ engine.animatedText = function (obj)
     local sprite = obj.sprite
     local framerate = obj.framerate
 
-    love.graphics.setColor(1,1,1)
+    if obj.color == nil then
+        obj.color = {1,1,1,1}
+    end
+
+    love.graphics.setColor(
+        engine.tint[1]*obj.color[1], 
+        engine.tint[2]*obj.color[2], 
+        engine.tint[3]*obj.color[3], 
+        engine.tint[4]*obj.color[4]
+    )
 
     love.graphics.draw(engine.resources[sprite].spritesheet, 
         engine.resources[sprite].frames[math.floor(framerate*engine.time) % 
@@ -226,7 +280,7 @@ engine.update = function (dt)
     engine.deltaTime = dt;
 
     -- debug
-    print(engine.time)
+    -- print(engine.time)
 
     for i=1,#engine.gameobjects do
         if (engine.gameobjects[i].update) then

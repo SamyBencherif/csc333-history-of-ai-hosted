@@ -17,6 +17,7 @@ function init()
     engine.importAudio("footsteps-gravel")
     engine.importAudio("window-break")
     engine.importAudio("footsteps-indoors")
+    engine.importAudio("light-on")
     engine.importAudio("machine-whirring")
     engine.importAudio("ai-bootup")
 end

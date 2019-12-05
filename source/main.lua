@@ -21,7 +21,7 @@ function love.load()
     love.graphics.setBackgroundColor(0,0,0);
 
     -- set it as the active scene
-    engine.loadScene(intro)
+    engine.loadScene(intro, true)
 end
 
 -- delegate love2d's mainloops to the engine
