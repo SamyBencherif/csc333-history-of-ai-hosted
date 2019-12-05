@@ -9,13 +9,8 @@ local engine = require('engine');
 local assets = require("assets");
 local gameio = require("gameio");
 
-print(io.popen"cd":read'*l');
-
-local narrative = gameio.readLines("source/text/scene1.txt");
-
 local tv;
 local mccarthy;
-local narrativeIndex = 1;
 local dialogBox;
 
 
@@ -89,17 +84,7 @@ return {
             {
                 finished = false;
                 action = function()
-                    dialogBox = engine.addGameObject(
-                        {
-                            x=10; y=370; 
-                            text= engine.textParser(narrative[narrativeIndex]);
-                            charsVisible=0;
-                            sprite="paragraph-block"; 
-                            framerate=0; 
-                            font=assets.joystixPixelFont;
-                            textRate=1/2;
-                        }, engine.animatedText
-                    )
+                    engine.quickDialog("source/text/scene1.txt", "scenes/dartmouth")
                 end;
                 activationTime = 5 + 8 + 4;
             }, nil, engine.deferredAgent
@@ -144,17 +129,4 @@ return {
         )
 
     end;
-
-    mousepressed = function(x, y, button, istouch)
-        if narrativeIndex < #narrative and dialogBox then
-            narrativeIndex = narrativeIndex + 1;
-            dialogBox.text = engine.textParser(narrative[narrativeIndex]);
-            dialogBox.charsVisible = 0;
-        elseif dialogBox then
-            -- user has clicked past all the dialog in this scene
-            local dartmouth = require("scenes/dartmouth");
-            engine.loadScene(dartmouth, true);
-        end
-    end
-
 }

@@ -4,6 +4,9 @@
 --            etc. It does not provide spritesheet slicing, animation, scene management, etc.
 --            This file contains our extension of the framework.
 
+local gameio = require("gameio")
+local assets = require("assets")
+
 local engine = {};
 
 -- Safe way to clear a scene. All asset pools and scenes are preserved in memory.
@@ -37,6 +40,29 @@ engine.addGameObject = function (obj, renderer, behavior)
     return obj; -- for chaining
 end
 
+engine.quickDialog = function(stageDirections, targetScene)
+    local db = engine.addGameObject(
+        {
+            narrative=gameio.readLines(stageDirections);
+            narrativeIndex=1;
+            charsVisible=0;
+            font=assets.joystixPixelFont;
+            textRate=1/2;
+        }, engine.dialogBox
+    )
+    db.mousepressed = function(x, y, button, istouch)
+        if db and db.narrativeIndex < #db.narrative then
+            db.narrativeIndex = db.narrativeIndex + 1;
+            db.charsVisible = 0;
+        elseif db then
+            -- user has clicked past all the dialog in this scene
+            local dartmouth = require(targetScene);
+            engine.loadScene(dartmouth, true);
+        end
+    end
+    return db
+end
+
 -- Imports a scene to the world
 engine.loadScene = function(scene, performReset)
 
@@ -47,11 +73,6 @@ engine.loadScene = function(scene, performReset)
 
     -- generate and add new gameobjects
     scene.load()
-
-    -- register interaction events
-    love.mousepressed = scene.mousepressed
-    love.mousemoved = scene.mousemoved
-    love.mousereleased = scene.mousereleased
 end
 
 -- Pulls an audio file from the sounds directory into memory
@@ -274,6 +295,41 @@ engine.animatedText = function (obj)
     )
 end
 
+-- sprite with animated text
+engine.dialogBox = function (obj)
+
+    if obj.color == nil then
+        obj.color = {1,1,1,1}
+    end
+
+    love.graphics.setColor(
+        engine.tint[1]*obj.color[1], 
+        engine.tint[2]*obj.color[2], 
+        engine.tint[3]*obj.color[3], 
+        engine.tint[4]*obj.color[4]
+    )
+
+    love.graphics.draw(engine.resources["paragraph-block"].spritesheet, 
+        engine.resources["paragraph-block"].frames[1], 10, 370, 0, 2, 2
+    );
+
+    -- Setting the font so that it is used when drawning the string.
+    love.graphics.setFont(obj.font)
+
+    -- Present one additional string character each frame
+    obj.charsVisible = obj.charsVisible + obj.textRate
+
+    -- Text color is black
+    love.graphics.setColor(0,0,0)
+
+    -- Renders the correct substring of text
+    -- The offset is hardcoded
+    love.graphics.print(
+        string.sub(engine.textParser(obj.narrative[obj.narrativeIndex]), 0, obj.charsVisible), 
+        30, 390
+    )
+end
+
 engine.textParser = function (str)
   if str == nil then return "" end
   local charCount = 0
@@ -302,9 +358,6 @@ engine.update = function (dt)
     engine.time = engine.time + dt;
     engine.deltaTime = dt;
 
-    -- debug
-    -- print(engine.time)
-
     for i=1,#engine.gameobjects do
         if (engine.gameobjects[i].update) then
 
@@ -321,6 +374,15 @@ engine.draw = function ()
     for i=1,#engine.gameobjects do
         if (engine.gameobjects[i].draw) then
             engine.gameobjects[i].draw()
+        end
+    end
+end
+
+-- Propagate clicks to gameObjects
+engine.mousepressed = function(x, y, button, istouch)
+    for i=1,#engine.gameobjects do
+        if (engine.gameobjects[i].mousepressed) then
+            engine.gameobjects[i].mousepressed(x, y, button, istouch)
         end
     end
 end
