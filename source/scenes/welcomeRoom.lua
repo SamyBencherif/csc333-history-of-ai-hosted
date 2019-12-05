@@ -23,8 +23,8 @@ return {
 
     load = function()
         -- Purple background
-        love.graphics.setBackgroundColor(0.4196, 0.2078, 0.6314);
-    
+        engine.addGameObject({color={0.4196, 0.2078, 0.6314}}, engine.backdrop)
+
         -- Minsky
         engine.addGameObject({x=340; y=40; sprite="minsky"; framerate=5}, engine.animatedSprite)
 

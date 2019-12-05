@@ -125,20 +125,14 @@ engine.importSpritesheet = function (dbKey, fwidth, fheight, count)
     engine.resources[dbKey] = localResource;
 end
 
--- Renderers are functions that return functions, they serve the purpose of being
--- easily exchangeable while maintaining the immutable properties of an object.
-
--- applies sound directions
-engine.timedAudioRenderer = function (obj, options)
-
-    return function()
-        if engine.time >= options.timeStart and not obj.playing then
-            love.audio.play(engine.resources[options.audio].audioSource)
-            obj.playing = true;
-        end
+-- audio source that starts playing after amount of seconds
+engine.timedAudioSource = function (obj)
+    if engine.time >= obj.timeStart and not obj.playing then
+        love.audio.play(engine.resources[obj.audio].audioSource)
+        obj.playing = true;
     end
-
 end
+
 
 -- renders an animated sprite
 engine.animatedSprite = function (obj)
@@ -155,6 +149,45 @@ engine.animatedSprite = function (obj)
         engine.resources[sprite].frames[math.floor(framerate*engine.time) % 
         #engine.resources[sprite].frames + 1], obj.x, obj.y, 0, 2, 2
     );
+end
+
+-- an object that will come into existence, wait an amount of time
+-- complete a task
+-- @property activiationTime: time in seconds when the action should occur
+-- @property action: function that should be called when activationTime passes
+-- @property finished: should be initialized to false
+engine.deferredAgent = function (obj)
+
+    if engine.time >= obj.activationTime and not obj.finished then
+        obj.action()
+        obj.finished = true
+    end
+
+end
+
+-- sprite with animated text
+-- @property font: font to render text in
+-- @property color: color render text in
+-- @property text: text to appear on screen
+engine.staticText = function (obj)
+
+    -- Setting the font so that it is used when drawning the string.
+    love.graphics.setFont(obj.font)
+
+    -- Text color is black
+    love.graphics.setColor(obj.color[1], obj.color[2], obj.color[3])
+
+    -- Draw text
+    love.graphics.print(
+        obj.text, 
+        obj.x, obj.y
+    )
+end
+
+engine.backdrop = function (obj)
+
+    love.graphics.setColor(obj.color[1], obj.color[2], obj.color[3])
+    love.graphics.rectangle("fill", 0, 0, 640, 480 )
 end
 
 -- sprite with animated text
@@ -191,6 +224,10 @@ end
 engine.update = function (dt)
     engine.time = engine.time + dt;
     engine.deltaTime = dt;
+
+    -- debug
+    print(engine.time)
+
     for i=1,#engine.gameobjects do
         if (engine.gameobjects[i].update) then
 

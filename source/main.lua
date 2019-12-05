@@ -18,8 +18,10 @@ function love.load()
     local intro = require("scenes/intro")
     local welcomeRoom = require("scenes/welcomeRoom")
 
+    love.graphics.setBackgroundColor(0,0,0);
+
     -- set it as the active scene
-    engine.loadScene(welcomeRoom)
+    engine.loadScene(intro)
 end
 
 -- delegate love2d's mainloops to the engine

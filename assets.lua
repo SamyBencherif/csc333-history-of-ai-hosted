@@ -23,5 +23,6 @@ end
 
 return {
     silkscreenPixelFont = love.graphics.newFont("fonts/slkscr.ttf", 20);
-    init = init
+    silkscreenPixelFontLarge = love.graphics.newFont("fonts/slkscr.ttf", 40);
+    init = init;
 };
