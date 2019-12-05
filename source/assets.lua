@@ -10,11 +10,14 @@ function init()
     engine.importSpritesheet("coin-gold", 32, 32);
 
     engine.importSpritesheet("minsky", 84, 101);
+
+    engine.importSpritesheet("cybernetic-picture-frame", 150, 120);
     engine.importSpritesheet("mccarthy", 120, 90);
 
     engine.importSpritesheet("book", 64, 64);
     engine.importSpritesheet("book-grounded", 64, 64);
     engine.importSpritesheet("shelf", 120, 150);
+
     engine.importSpritesheet("paragraph-block", 310, 50);
 
     engine.importSpritesheet("dartmouth-conference", 320, 240);

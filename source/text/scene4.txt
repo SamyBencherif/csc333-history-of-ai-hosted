@@ -4,7 +4,7 @@ McCarthy:which I was notably a part of.
 McCarthy:I believed that Newell's approach to decision making was the right path for AI. 
 McCarthy:If we can make logical decisions to solve problems, we could start thinking like a human.
 McCarthy:To create these new AI programs, scientists would need a powerful language. 
-(((((((((()))))))))
+McCarthy:(((((((((()))))))))
 McCarthy:Oooo are those parentheses I see? That reminds me of a certain language.
 McCarthy:The Logic Theorist proved that AI needed three key components: list processing, heuristics,
 McCarthy:and reasoning as search. 
