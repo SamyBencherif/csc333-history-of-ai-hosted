@@ -1,9 +1,15 @@
+-- @author: Samy Bencherif
+-- @technical: Love2D configuration file
 
 function love.conf(t)
     
+    -- Window size
     t.window.width = 640;
     t.window.height = 480;
-    t.window.title = "New Game";
-    t.console = true;
 
+    -- Game title
+    t.window.title = "New Game";
+
+    -- Allows printing to console (https://love2d.org/forums/viewtopic.php?t=79579)
+    t.console = true;
 end

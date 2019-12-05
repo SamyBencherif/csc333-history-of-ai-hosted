@@ -1,7 +1,12 @@
+-- @author: Samy Bencherif
+-- @description: Good Ole Minsky Painting and Library
+
+-- Notes:
+-- This "intro" scene will be replaced with the black screen with sounds
+-- The room with minksy will be made the 2nd or 3rd scene.
 
 local engine = require('engine');
 local assets = require("assets");
-
 
 local narrative = {
     "I hate my life...",

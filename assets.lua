@@ -1,3 +1,5 @@
+-- @author: Samy Bencherif
+-- @description: Contains listing of game files
 
 local engine = require("engine");
 
