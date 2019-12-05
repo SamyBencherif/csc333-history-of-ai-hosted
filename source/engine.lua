@@ -8,7 +8,7 @@ local engine = {};
 
 -- Safe way to clear a scene. All asset pools and scenes are preserved in memory.
 -- GameObjects are destroyed.
-engine.resDet = function ()
+engine.reset = function ()
     engine.time = 0;
     engine.gameobjects = {};
 end
