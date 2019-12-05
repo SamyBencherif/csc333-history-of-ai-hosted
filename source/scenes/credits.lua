@@ -6,6 +6,15 @@ local assets = require("assets");
 
 return {
     load = function ()
+
+        engine.addGameObject(
+            {
+                playing = false;
+                audio = "window-break";
+                timeStart = 0;
+            }, nil, engine.timedAudioSource
+        )
+
         engine.addGameObject({color={0.6, 0.078, 0.314, 1}}, engine.backdrop)
 
         engine.addGameObject({}).mousepressed = function()

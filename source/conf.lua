@@ -10,7 +10,7 @@ function love.conf(t)
     -- Game title
     t.window.title = "Superbulous Adventures in Historical AI";
 
-    t.window.fullscreen = false;   
+    t.window.fullscreen = true;   
 
     -- Allows printing to console (https://love2d.org/forums/viewtopic.php?t=79579)
     t.console = true;
