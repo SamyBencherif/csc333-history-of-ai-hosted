@@ -28,3 +28,4 @@ end
 -- delegate love2d's mainloops to the engine
 love.update = engine.update
 love.draw = engine.draw
+love.mousepressed = engine.mousepressed

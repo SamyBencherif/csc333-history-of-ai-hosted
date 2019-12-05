@@ -1,9 +1,9 @@
 -- @author: Samy Bencherif
 -- @description: Contains listing of game files
 
-local engine = require("engine");
-
 function init()
+    local engine = require("engine");
+
     -- Initialized here to preserve resources over reloads
     engine.resources = {};
 
