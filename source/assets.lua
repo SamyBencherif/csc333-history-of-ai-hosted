@@ -9,10 +9,12 @@ function init()
 
     engine.importSpritesheet("coin-gold", 32, 32);
 
-    engine.importSpritesheet("minsky", 84, 101);
 
     engine.importSpritesheet("cybernetic-picture-frame", 150, 120);
     engine.importSpritesheet("mccarthy", 120, 90);
+    engine.importSpritesheet("newell", 120, 113);
+    engine.importSpritesheet("rosenblatt", 100, 130);
+    engine.importSpritesheet("minsky", 84, 101);
 
     engine.importSpritesheet("book", 64, 64);
     engine.importSpritesheet("book-grounded", 64, 64);

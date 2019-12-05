@@ -21,6 +21,8 @@ return {
         -- Skip all welcome room intro
         engine.time = 5 + 8 + 4;
 
+        engine.pipHidden = true
+
         -- Purple background
         engine.addGameObject({color={0.4196, 0.2078, 0.6314, 1}}, engine.backdrop)
 

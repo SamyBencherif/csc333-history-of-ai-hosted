@@ -17,6 +17,16 @@ engine.reset = function ()
     engine.gameobjects = {};
 end
 
+engine.removeGameObject = function(obj)
+
+    for i=1,#engine.gameobjects do
+        if engine.gameobjects[i] == obj then
+            engine.gameobjects[i] = nil
+        end
+    end
+
+end
+
 -- Adds a gameObject to the world
 engine.addGameObject = function (obj, renderer, behavior)
 
@@ -176,11 +186,15 @@ engine.animatedSprite = function (obj)
         engine.tint[4]*obj.color[4]
     )
 
+    if obj.scale == nil then
+        obj.scale = 2
+    end
+
     -- We select the spritesheet as the image to draw and the sprite quad as the drawing region.
     -- The sprite quad is collected by indexing the array with an expression of time.
     love.graphics.draw(engine.resources[sprite].spritesheet, 
         engine.resources[sprite].frames[math.floor(framerate*engine.time) % 
-        #engine.resources[sprite].frames + 1], obj.x, obj.y, 0, 2, 2
+        #engine.resources[sprite].frames + 1], obj.x, obj.y, 0, obj.scale, obj.scale
     );
 end
 
@@ -322,10 +336,66 @@ engine.dialogBox = function (obj)
     -- Text color is black
     love.graphics.setColor(0,0,0)
 
+    local namedText = engine.textParser(obj.narrative[obj.narrativeIndex])
+
+    if string.sub(namedText, 0, 9) == "McCarthy:" then
+        namedText = string.sub(namedText, 10)
+        if not engine.pipHidden then
+            -- make any existing pip invisible
+            if engine.pip and engine.pip.sprite ~= "mccarthy" then
+                engine.removeGameObject(engine.pip)
+            end
+
+            -- add new pip
+            if engine.pip == nil or engine.pip.sprite ~= "mccarthy" then
+                engine.pip = engine.addGameObject({x=25; y=290; sprite="mccarthy"; framerate=12, scale=1}, engine.animatedSprite)
+            end
+        end
+    elseif string.sub(namedText, 0, 7) == "Newell:" then
+        namedText = string.sub(namedText, 8)
+        if not engine.pipHidden then
+            -- make any existing pip invisible
+            if engine.pip and engine.pip.sprite ~= "newell" then
+                engine.removeGameObject(engine.pip)
+            end
+
+            -- add new pip
+            if engine.pip == nil or engine.pip.sprite ~= "newell" then
+                engine.pip = engine.addGameObject({x=25; y=265; sprite="newell"; framerate=12, scale=1}, engine.animatedSprite)
+            end
+        end
+    elseif string.sub(namedText, 0, 11) == "Rosenblatt:" then
+        namedText = string.sub(namedText, 12)
+        if not engine.pipHidden then
+            -- make any existing pip invisible
+            if engine.pip and engine.pip.sprite ~= "rosenblatt" then
+                engine.removeGameObject(engine.pip)
+            end
+
+            -- add new pip
+            if engine.pip == nil or engine.pip.sprite ~= "rosenblatt" then
+                engine.pip = engine.addGameObject({x=25-6; y=290-37; sprite="rosenblatt"; framerate=12, scale=1}, engine.animatedSprite)
+            end
+        end
+    elseif string.sub(namedText, 0, 7) == "Minsky:" then
+        namedText = string.sub(namedText, 8)
+        if not engine.pipHidden then
+            -- make any existing pip invisible
+            if engine.pip and engine.pip.sprite ~= "minsky" then
+                engine.removeGameObject(engine.pip)
+            end
+
+            -- add new pip
+            if engine.pip == nil or engine.pip.sprite ~= "minsky" then
+                engine.pip = engine.addGameObject({x=25; y=290; sprite="minsky"; framerate=12, scale=1}, engine.animatedSprite)
+            end
+        end
+    end
+
     -- Renders the correct substring of text
     -- The offset is hardcoded
     love.graphics.print(
-        string.sub(engine.textParser(obj.narrative[obj.narrativeIndex]), 0, obj.charsVisible), 
+        string.sub(namedText, 0, obj.charsVisible), 
         30, 390
     )
 end
@@ -359,6 +429,8 @@ engine.update = function (dt)
     engine.deltaTime = dt;
 
     for i=1,#engine.gameobjects do
+        if (engine.gameobjects[i] == nil) then return end
+
         if (engine.gameobjects[i].update) then
 
             -- calls the gameObject's update function
@@ -372,6 +444,7 @@ end
 -- Draw each gameObject.
 engine.draw = function ()
     for i=1,#engine.gameobjects do
+        if (engine.gameobjects[i] == nil) then return end
         if (engine.gameobjects[i].draw) then
             engine.gameobjects[i].draw()
         end
@@ -381,6 +454,7 @@ end
 -- Propagate clicks to gameObjects
 engine.mousepressed = function(x, y, button, istouch)
     for i=1,#engine.gameobjects do
+        if (engine.gameobjects[i] == nil) then return end
         if (engine.gameobjects[i].mousepressed) then
             engine.gameobjects[i].mousepressed(x, y, button, istouch)
         end

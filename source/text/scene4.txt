@@ -26,7 +26,6 @@ McCarthy:This is the process of eliminating certain paths before they get too la
 McCarthy:following known rules of thumb or intuition. 
 McCarthy:Essentially, we guess!
 McCarthy:Most of us thought that with some more clever tricks, AI was just around the corner! 
-*Rosenblatt suddenly appears*
 Rosenblatt:I, too, was quite optimistic about the future.
 McCarthy:Ah Frank Rosenblatt, another esteemed figure in AI research. 
 McCarthy:I thought I quarantined your AI subsystems to the latrine.
