@@ -234,8 +234,6 @@ return {
             {
                 finished = false;
                 action = function()
-                    local welcomeRoom = require("scenes/welcomeRoom");
-                    engine.loadScene(welcomeRoom);
                     engine.tint = {1,1,1,1};
                 end;
                 activationTime = 12 + 4 + 5 + .6;

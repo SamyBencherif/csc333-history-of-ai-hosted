@@ -17,6 +17,7 @@ local narrative = {
     "Fin.",
 };
 
+local tv;
 local mccarthy;
 local narrativeIndex = 1;
 local dialogBox;
@@ -29,7 +30,8 @@ return {
         engine.addGameObject({color={0.4196, 0.2078, 0.6314, 1}}, engine.backdrop)
 
         -- mccarthy
-        engine.addGameObject({x=340; y=40; w=120, h=90, color={0,0,0,1}}, engine.block)
+        engine.addGameObject({x=340; y=40; w=240, h=180, color={0,0,0,1}}, engine.block)
+        tv = engine.addGameObject({x=340; y=40; w=240, h=180, color={.1, .3, .8, .1}}, engine.block)
         mccarthy = engine.addGameObject({x=340; y=40; sprite="mccarthy"; framerate=0}, engine.animatedSprite)
 
         -- Bookshelf
@@ -65,6 +67,7 @@ return {
                 finished = false;
                 action = function()
                     mccarthy.color = {1,1,1,1}
+                    tv.color = {.1, .3, .8, 1};
                 end;
                 activationTime = 12 + 4 + 5 + 8 + 4;
             }, nil, engine.deferredAgent
