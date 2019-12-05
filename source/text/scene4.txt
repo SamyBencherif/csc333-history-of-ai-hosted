@@ -8,10 +8,12 @@ McCarthy:(((((((((()))))))))
 McCarthy:Oooo are those parentheses I see? That reminds me of a certain language.
 McCarthy:The Logic Theorist proved that AI needed three key components: list processing, heuristics,
 McCarthy:and reasoning as search. 
-McCarthy:Therefore, I created the most (elegant) programming language: LISP, to efficiently create symbolic lists. 
+McCarthy:Therefore, I created the most (elegant) programming language: LISP, to efficiently 
+McCarthy:create symbolic lists. 
 McCarthy:The language used notation very similar to Alonzo Church's lambda calculus, 
 McCarthy:with maybe a few extra parentheses. The language also pioneered tree data structures used in 
-McCarthy:the reasoning as search algorithm. This made LISP quite appealing to AI research and was widely used.
+McCarthy:the reasoning as search algorithm. This made LISP quite appealing to 
+McCarthy:AI research and was widely used.
 McCarthy: Let's go back to a few of those components listed earlier, as they were both a blessing 
 McCarthy:and a curse for the symbolic approach. Reasoning as search was a method of moving across 
 McCarthy:a search tree looking for the answer to the hypothesis at the root. 
@@ -19,7 +21,8 @@ McCarthy:Each branch was a logical deduction leading to the desired outcome.
 McCarthy: Many of the game AIs developed used this approach. For instance in chess, the AI would search 
 McCarthy:for its next best move by searching through the tree of all possible moves. 
 McCarthy:However this produces another problem, the tree may get a bit large. 
-McCarthy:This may result in a combinatorial explosion, where the number of possibilities grows astronomically, 
+McCarthy:This may result in a combinatorial explosion, where the 
+McCarthy:number of possibilities grows astronomically, 
 McCarthy:making it impossible to process with the computational power available. 
 McCarthy:That's where heuristics come in.
 McCarthy:This is the process of eliminating certain paths before they get too large by 
@@ -33,6 +36,7 @@ Rosenblatt:McCarthy, you were always too arrogant in your symbolic approach to s
 Rosenblatt:that humans didn't solve problems that way. 
 Rosenblatt:There was no intentionality to your solutions, a machine can't think like a human if 
 Rosenblatt:it doesn't understand the objects it uses. 
-Rosenblatt:My perceptron was more "symbolic" of human thought, using biology as a source to actually learn.
+Rosenblatt:My perceptron was more "symbolic" of human thought, 
+Rosenblatt:using biology as a source to actually learn.
 McCarthy:I don't want to have this argument again Rosenblatt. 
 McCarthy:You deal with the human, I'll be up in my study where I have endless parentheses to play with.

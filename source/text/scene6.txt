@@ -16,23 +16,28 @@ Rosenblatt: Except that it was later proven that multi-layered networks can actu
 Minsky:The damage was already done and my book had a staggering effect on the use of perceptrons. 
 Minsky:After 1969, all funding for the research left and no one would use perceptrons for over a decade.
 Minsky:At this point symbolic logic was also showing little signs of success and many problems resulted 
-Minsky:in combinatorial explosions. The lack of development in AI and most solutions making little progress
+Minsky:in combinatorial explosions. 
+Minsky:The lack of development in AI and most solutions making little progress
 Minsky:lead to a lack of funding in the field. At the start of the 1970s we had the first AI winter.
 *Snow falls outside*
 *Minsky looks out the window*
 Minsky: As a result, program development became increasingly unfeasible. 
 Minsky:Researchers were further handicapped by physical computational limits. 
-Minsky:AI solutions were large and complicated programs, most of which were likely written with an unbridled 
-Minsky:sense of childlike optimism. Simply put, the mid-20th century was a time when everyone overestimated 
-Minsky:their machines and programming capabilities, and underestimated the mysteries of the human nervous system. 
+Minsky:AI solutions were large and complicated programs, most of which were likely 
+Minsky:written with an unbridled sense of childlike optimism. Simply put,
+Minsky:the mid-20th century was a time when everyone overestimated 
+Minsky:their machines and programming capabilities,
+Minsky:and underestimated the mysteries of the human nervous system. 
 Minsky:The ability to exercise "Common Sense" is resoundingly elusive to attempts to be codified.
 Rosenblatt:I believe we were both quite optimistic.
 Rosenblatt:It seemed so close at the time, but it was simply too soon. 
-Rosenblatt:The proper use of perceptrons didn't come till much later when we had better proofs and better machines.
+Rosenblatt:The proper use of perceptrons didn't come till 
+Rosenblatt:much later when we had better proofs and better machines.
 Rosenblatt:We also underestimated the amount of data we would need to possibly create an AI. 
 Minsky: And so that is the tale of early AI. 
 Minsky: Wait why were you here again?
 Minsky: I'm pretty sure McCarthy mentioned something about being trapped.
-Minsky: Ah he must have meant that we were supposed to trap you here so that you can learn about early AI and how important we are.
+Minsky: Ah he must have meant that we were supposed to trap you here so that you 
+Minsky:can learn about early AI and how important we are.
 Minsky:I feel like we should start back over from the beginning.
 Minsky: And don't think of escaping out that window, that would be against the rules!
