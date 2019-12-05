@@ -7,13 +7,11 @@
 
 local engine = require('engine');
 local assets = require("assets");
+local gameio = require("gameio");
 
-local narrative = {
-    "WHO ARE YOU? AND WHY ARE YOU IN MY HOUSE?",
-    "IIIIIIIIIIIIIII\niiiiiiiiiiiiii\nXXXXXXXXXXXXXX",
-    "Of course, another ruffian who has decided to\nsteal my things and disgrace my legacy. Do you even know who I am? I am the founder of AI itself!",
-    "While my original body is now dead, my mind lives on, new and improved, as a brain emulation. The founder of Artificial Intelligence, in a computer program! I live on in this old house to protect its legacy and educate the people of my work."
-};
+print(io.popen"cd":read'*l');
+
+local narrative = gameio.readLines("source/text/scene1.txt");
 
 local tv;
 local mccarthy;
@@ -94,7 +92,7 @@ return {
                     dialogBox = engine.addGameObject(
                         {
                             x=10; y=370; 
-                            text=narrative[narrativeIndex];
+                            text= engine.textParser(narrative[narrativeIndex]);
                             charsVisible=0;
                             sprite="paragraph-block"; 
                             framerate=0; 
@@ -150,7 +148,7 @@ return {
     mousepressed = function(x, y, button, istouch)
         if narrativeIndex < #narrative and dialogBox then
             narrativeIndex = narrativeIndex + 1;
-            dialogBox.text = narrative[narrativeIndex];
+            dialogBox.text = engine.textParser(narrative[narrativeIndex]);
             dialogBox.charsVisible = 0;
         elseif dialogBox then
             -- user has clicked past all the dialog in this scene
