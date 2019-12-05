@@ -274,6 +274,29 @@ engine.animatedText = function (obj)
     )
 end
 
+engine.textParser = function (str)
+  if str == nil then return "" end
+  local charCount = 0
+  local lineLength = 0
+  local maxLineLength = 39
+  local output = ""
+  while charCount < string.len(str) do
+    local word = string.match(str, '[%g]*', charCount)
+    if lineLength + string.len(word) > maxLineLength then
+      output = output.."\n"
+      lineLength = 0
+    end
+    if charCount == 0 then
+      output = output..word
+    else
+      output = output..word.." "
+    end
+    charCount = charCount + string.len(word) + 1
+    lineLength = lineLength + string.len(word) + 1
+  end
+  return output
+end
+
 -- Keep track of time and run any gameObject-specific update routines
 engine.update = function (dt)
     engine.time = engine.time + dt;
