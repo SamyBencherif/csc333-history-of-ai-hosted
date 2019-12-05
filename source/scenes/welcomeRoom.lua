@@ -150,6 +150,10 @@ return {
             narrativeIndex = narrativeIndex + 1;
             dialogBox.text = engine.textParser(narrative[narrativeIndex]);
             dialogBox.charsVisible = 0;
+        elseif dialogBox then
+            -- user has clicked past all the dialog in this scene
+            local dartmouth = require("scenes/dartmouth");
+            engine.loadScene(dartmouth, true);
         end
     end
 
