@@ -25,7 +25,7 @@ Minsky:Researchers were further handicapped by physical computational limits.
 Minsky:AI solutions were large and complicated programs, most of which were likely written with an unbridled 
 Minsky:sense of childlike optimism. Simply put, the mid-20th century was a time when everyone overestimated 
 Minsky:their machines and programming capabilities, and underestimated the mysteries of the human nervous system. 
-Minsky:The ability to exercise “Common Sense” is resoundingly elusive to attempts to be codified.
+Minsky:The ability to exercise "Common Sense" is resoundingly elusive to attempts to be codified.
 Rosenblatt:I believe we were both quite optimistic.
 Rosenblatt:It seemed so close at the time, but it was simply too soon. 
 Rosenblatt:The proper use of perceptrons didn't come till much later when we had better proofs and better machines.

@@ -7,7 +7,7 @@ McCarthy:Ah yes, the days of checkers, such simpler times.
 McCarthy:With all of these newfound technologies being developed, researchers hypothesized 
 McCarthy:human intelligence could be emulated. At that point, I knew that a brand new discipline was afoot.
 McCarthy:With the help of my dear friend Marvin Minsky, 
-McCarthy:we organized the Dartmouth Conference where I coined the term “Artificial Intelligence.”
+McCarthy:we organized the Dartmouth Conference where I coined the term "Artificial Intelligence."
 McCarthy:So a new field was born. 
 McCarthy: I admit I didn't do it alone.
 McCarthy:Researchers used many different approaches to build the field of A.I.

@@ -33,6 +33,6 @@ Rosenblatt:McCarthy, you were always too arrogant in your symbolic approach to s
 Rosenblatt:that humans didn't solve problems that way. 
 Rosenblatt:There was no intentionality to your solutions, a machine can't think like a human if 
 Rosenblatt:it doesn't understand the objects it uses. 
-Rosenblatt:My perceptron was more “symbolic” of human thought, using biology as a source to actually learn.
+Rosenblatt:My perceptron was more "symbolic" of human thought, using biology as a source to actually learn.
 McCarthy:I don't want to have this argument again Rosenblatt. 
 McCarthy:You deal with the human, I'll be up in my study where I have endless parentheses to play with.

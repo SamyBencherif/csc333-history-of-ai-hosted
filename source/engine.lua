@@ -57,7 +57,7 @@ engine.quickDialog = function(stageDirections, targetScene)
             narrativeIndex=1;
             charsVisible=0;
             font=assets.joystixPixelFont;
-            textRate=1.5;
+            textRate=2.4;
         }, engine.dialogBox
     )
     db.mousepressed = function(x, y, button, istouch)
