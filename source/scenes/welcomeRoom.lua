@@ -84,7 +84,7 @@ return {
             {
                 finished = false;
                 action = function()
-                    engine.quickDialog("source/text/scene1.txt", "scenes/dartmouth")
+                    engine.quickDialog("text/scene1.txt", "scenes/dartmouth")
                 end;
                 activationTime = 5 + 8 + 4;
             }, nil, engine.deferredAgent

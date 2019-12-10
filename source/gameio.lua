@@ -1,9 +1,8 @@
 local gameio = {}
 
 function file_exists(file)
-  local f = io.open(file, "rb")
-  if f then f:close() end
-  return f ~= nil
+  local f = love.filesystem.getInfo(file)
+  return f.size ~= nil
 end
 
 -- get all lines from a file, returns an empty 
@@ -14,7 +13,7 @@ gameio.readLines = function(file)
     return {} 
   end
   lines = {}
-  for line in io.lines(file) do 
+  for line in love.filesystem.lines(file, "rb") do 
     lines[#lines + 1] = line
   end
 
