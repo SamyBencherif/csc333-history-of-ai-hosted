@@ -1,6 +1,6 @@
 # Superbulous Adventures in Historical AI
 
-[[Play Game](https://samybencherif.github.io/csc333-history-of-ai-hosted/)]
+[[Download Game](https://github.com/SamyBencherif/csc333-history-of-ai-hosted/blob/master/index.html?raw=true)]
 
 A beautiful computational adventure created by three programming mavericks.
 
