@@ -14,4 +14,6 @@ A beautiful computational adventure created by three programming mavericks.
 
 If you are running on a different platform, please install https://love2d.org/, then double-click game.love
 
+## Web
+
 The [web version](https://samybencherif.github.io/csc333-history-of-ai-hosted/) is broken 😯, but the intro works!
