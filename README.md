@@ -1,6 +1,6 @@
 # Superbulous Adventures in Historical AI
 
-[[Play Game](https://pages.github.ncsu.edu/sbenche2/csc333-lua-game/)]
+[[Play Game](https://samybencherif.github.io/csc333-history-of-ai-hosted/)]
 
 A beautiful computational adventure created by three programming mavericks.
 
